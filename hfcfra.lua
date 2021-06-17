@@ -37,7 +37,7 @@ local _username
 
 
 function InitializeSession (protocol, bankCode, username, customer, password)
-    MM.printStatus("Login")
+  
     -- Fetch login page.
     connection.language = "de-de"
     html = HTML(connection:get("https://www.hfc-frankfurt.de/index.php?op=login"))
@@ -81,7 +81,6 @@ function RefreshAccount (account, since)
   for i=1,_transactionsRows:length() do 	  
 	  local _currentRow = _transactionsRows:get(i)
 	  
-	  --MM.printStatus(_currentRow:children():length())
 	  local _leadElement = _currentRow:children():get(1):text()
 	  
 	  
@@ -174,7 +173,6 @@ function mysplit (inputstr, sep)
 end
 
 function toNumber(str)
-	MM.printStatus(str)
 
 	local _workstring = trim1(str)	
 	local _mult = 1
@@ -189,7 +187,6 @@ function toNumber(str)
 	_workstring = string.match(_workstring,'%f[%d]%d[,.%d]*%f[%D]')
 	
 	_workstring = string.gsub(_workstring,",",".")
-	MM.printStatus(_workstring)
 		
 	local _number = _workstring * _mult
 	return _number
